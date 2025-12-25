@@ -244,7 +244,7 @@ const App: React.FC = () => {
                       </div>
                       {isChristmas ? (
                         <>
-                          <div className="text-5xl font-bold tracking-tighter tabular-nums drop-shadow-[0_0_10px]" style={{color: theme.secondary, textShadow: `0 0 10px ${theme.glow}`}}>
+                          <div className="text-3xl sm:text-4xl font-bold tracking-tighter tabular-nums drop-shadow-[0_0_10px]" style={{color: theme.secondary, textShadow: `0 0 10px ${theme.glow}`}}>
                               {santa.giftsDelivered.toLocaleString()}
                           </div>
                           <div className="w-full h-2 mt-4 relative overflow-hidden rounded-full border" style={{backgroundColor: theme.primaryDark + '30', borderColor: theme.primaryDark + '50'}}>
