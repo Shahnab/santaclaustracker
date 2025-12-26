@@ -131,7 +131,7 @@ const App: React.FC = () => {
 
   // --- MAIN APP ---
   return (
-    <div className="relative w-screen h-screen bg-black text-white font-mono overflow-hidden select-none">
+    <div className="relative w-screen h-screen bg-black text-white font-mono overflow-hidden md:overflow-hidden">
       
       {/* --- 3D MAP BACKGROUND LAYER (Desktop Only) --- */}
       <div className="hidden md:block absolute inset-0 z-0 bg-black">
@@ -169,10 +169,10 @@ const App: React.FC = () => {
       </div>
       
       {/* UI Overlay */}
-      <div className="absolute inset-0 flex flex-col pointer-events-none z-30 md:z-20">
+      <div className="absolute inset-0 flex flex-col pointer-events-none z-30 md:z-20 overflow-y-auto md:overflow-visible touch-pan-y">
         
         {/* --- TOP BAR --- */}
-        <header className="h-auto md:h-14 bg-gradient-to-r from-[#051014]/95 via-[#051014]/90 to-[#051014]/95 backdrop-blur-md border-b-2 flex flex-col md:flex-row items-center justify-between px-3 md:px-6 py-2 md:py-0 text-xs tracking-wider z-50 relative overflow-hidden pointer-events-auto" style={{borderColor: theme.primary + '30', boxShadow: `0 5px 30px ${theme.glow}`}}>
+        <header className="h-auto md:h-14 bg-gradient-to-r from-[#051014]/95 via-[#051014]/90 to-[#051014]/95 backdrop-blur-md border-b-2 flex flex-col md:flex-row items-center justify-between px-3 md:px-6 py-2 md:py-0 text-xs tracking-wider z-50 relative overflow-hidden pointer-events-auto shrink-0" style={{borderColor: theme.primary + '30', boxShadow: `0 5px 30px ${theme.glow}`}}>
            {/* Animated background bar */}
            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-transparent shimmer opacity-50" style={{backgroundImage: `linear-gradient(to right, transparent, ${theme.primaryLight}, transparent)`}}></div>
            
@@ -209,7 +209,7 @@ const App: React.FC = () => {
         </header>
 
         {/* --- MAIN CONTENT GRID --- */}
-        <div className="flex-1 flex flex-col md:flex-row relative p-2 md:p-6 gap-4 md:gap-0 overflow-y-auto md:overflow-visible">
+        <div className="flex-1 flex flex-col md:flex-row relative p-2 md:p-6 gap-4 md:gap-0 overflow-y-visible md:overflow-visible pb-8">
             
             {/* --- LEFT COLUMN --- */}
             <div className="w-full md:w-80 flex flex-col gap-4 pointer-events-auto md:h-full justify-start order-2 md:order-1 shrink-0">
