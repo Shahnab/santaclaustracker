@@ -172,35 +172,35 @@ const App: React.FC = () => {
       <div className="absolute inset-0 flex flex-col pointer-events-none z-20">
         
         {/* --- TOP BAR --- */}
-        <header className="h-14 bg-gradient-to-r from-[#051014]/95 via-[#051014]/90 to-[#051014]/95 backdrop-blur-md border-b-2 flex items-center justify-between px-6 text-xs tracking-wider z-50 relative overflow-hidden" style={{borderColor: theme.primary + '30', boxShadow: `0 5px 30px ${theme.glow}`}}>
+        <header className="h-auto md:h-14 bg-gradient-to-r from-[#051014]/95 via-[#051014]/90 to-[#051014]/95 backdrop-blur-md border-b-2 flex flex-col md:flex-row items-center justify-between px-3 md:px-6 py-2 md:py-0 text-xs tracking-wider z-50 relative overflow-hidden" style={{borderColor: theme.primary + '30', boxShadow: `0 5px 30px ${theme.glow}`}}>
            {/* Animated background bar */}
            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-transparent shimmer opacity-50" style={{backgroundImage: `linear-gradient(to right, transparent, ${theme.primaryLight}, transparent)`}}></div>
            
-           <div className="flex items-center gap-4 w-1/3">
-              <div className="w-10 h-10 border-2 flex items-center justify-center pulse-glow relative" style={{backgroundColor: theme.primary + '30', borderColor: theme.primary + '50'}}>
-                 <div className="w-5 h-5 rounded-full border-2 border-t-transparent animate-spin" style={{borderColor: theme.primaryLight}}></div>
+           <div className="flex items-center gap-2 md:gap-4 w-full md:w-1/3">
+              <div className="w-8 h-8 md:w-10 md:h-10 border-2 flex items-center justify-center pulse-glow relative" style={{backgroundColor: theme.primary + '30', borderColor: theme.primary + '50'}}>
+                 <div className="w-4 h-4 md:w-5 md:h-5 rounded-full border-2 border-t-transparent animate-spin" style={{borderColor: theme.primaryLight}}></div>
                  <div className="absolute inset-0 blur-sm" style={{backgroundColor: theme.primary + '10'}}></div>
               </div>
               <div className="flex flex-col">
-                  <span className="font-bold text-sm tracking-widest" style={{color: theme.secondary}}>SANTA CLAUS TRACKER</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[9px]" style={{color: theme.primaryDark}}>SATCOM LINK:</span>
-                    <span className="text-[9px] text-green-400 font-bold flex items-center gap-1">
-                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
+                  <span className="font-bold text-xs md:text-sm tracking-widest" style={{color: theme.secondary}}>SANTA CLAUS TRACKER</span>
+                  <div className="flex items-center gap-1 md:gap-2">
+                    <span className="text-[8px] md:text-[9px]" style={{color: theme.primaryDark}}>SATCOM LINK:</span>
+                    <span className="text-[8px] md:text-[9px] text-green-400 font-bold flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.8)]"></span>
                       ACTIVE
                     </span>
                   </div>
               </div>
            </div>
            
-           <div className="w-1/3 text-center">
+           <div className="hidden md:block md:w-1/3 text-center">
               <span className="bg-red-900/30 px-5 py-1.5 border-2 border-red-500/50 text-red-300 font-bold tracking-widest shadow-[0_0_15px_rgba(239,68,68,0.3)] relative">
                 <span className="relative z-10">CLASSIFICATION: SECRET//SHAHNAB</span>
                 <div className="absolute inset-0 bg-red-500/5 animate-pulse"></div>
               </span>
            </div>
            
-           <div className="w-1/3 text-right font-bold flex items-center justify-end gap-2" style={{color: theme.secondary}}>
+           <div className="w-full md:w-1/3 text-center md:text-right font-bold flex items-center justify-center md:justify-end gap-2 mt-2 md:mt-0 text-[10px] md:text-xs" style={{color: theme.secondary}}>
               <span style={{color: theme.primaryDark}}>SYS_TIME:</span>
               <span className="tabular-nums bg-black/40 px-2 py-1 border shadow-inner" style={{borderColor: theme.primaryDark + '50'}}>
                 {currentTime.toLocaleString()}
@@ -209,13 +209,13 @@ const App: React.FC = () => {
         </header>
 
         {/* --- MAIN CONTENT GRID --- */}
-        <div className="flex-1 flex relative p-6">
+        <div className="flex-1 flex flex-col md:flex-row relative p-2 md:p-6 gap-4 md:gap-0 overflow-y-auto md:overflow-visible">
             
             {/* --- LEFT COLUMN --- */}
-            <div className="w-80 flex flex-col gap-4 pointer-events-auto h-full justify-start">
+            <div className="w-full md:w-80 flex flex-col gap-4 pointer-events-auto md:h-full justify-start order-2 md:order-1">
                 
                 {/* 1. Log Feed */}
-                <HudBox title={isChristmas ? "DECLASSIFIED THERMAG FEED" : "DECLASSIFIED THERMAG FEED [ERROR]"} className={`h-96 relative overflow-hidden ${!isChristmas ? 'glitch' : ''}`} style={{borderLeft: `4px solid ${!isChristmas ? '#ff0000' : theme.primary}`}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
+                <HudBox title={isChristmas ? "DECLASSIFIED THERMAG FEED" : "DECLASSIFIED THERMAG FEED [ERROR]"} className={`h-64 md:h-96 relative overflow-hidden ${!isChristmas ? 'glitch' : ''}`} style={{borderLeft: `4px solid ${!isChristmas ? '#ff0000' : theme.primary}`}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
                    {/* Animated side indicator */}
                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent to-transparent data-stream opacity-30" style={{backgroundImage: `linear-gradient(to bottom, transparent, ${theme.primaryLight}, transparent)`}}></div>
                    
@@ -284,7 +284,7 @@ const App: React.FC = () => {
                           loop 
                           muted 
                           playsInline
-                          className="w-full h-48 object-cover mt-5"
+                          className="w-full h-32 md:h-48 object-cover mt-5"
                           style={{
                             filter: viewMode === ViewMode.THERMAL 
                               ? 'grayscale(100%) contrast(150%) brightness(120%) sepia(100%) hue-rotate(-50deg) saturate(400%)'
@@ -308,9 +308,9 @@ const App: React.FC = () => {
             </div>
 
             {/* --- CENTER AREA (RETICLE) --- */}
-            <div className="flex-1 relative mx-8">
+            <div className="flex-1 relative mx-0 md:mx-8 order-1 md:order-2 h-64 md:h-auto">
                 {/* Center Reticle Box */}
-                <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[50%] border ${!isChristmas ? 'glitch' : ''}`} style={{borderColor: !isChristmas ? '#ff0000' : theme.primary + '30'}}>
+                <div className={`hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[50%] border ${!isChristmas ? 'glitch' : ''}`} style={{borderColor: !isChristmas ? '#ff0000' : theme.primary + '30'}}>
                     {/* Corners */}
                     <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2" style={{borderColor: !isChristmas ? '#ff0000' : theme.secondary}}></div>
                     <div className="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2" style={{borderColor: !isChristmas ? '#ff0000' : theme.secondary}}></div>
@@ -325,7 +325,7 @@ const App: React.FC = () => {
                     </div>
 
                     {/* RIGHT: Telemetry */}
-                    <div className="absolute top-8 -right-36 w-48">
+                    <div className="hidden md:block absolute top-8 -right-36 w-48">
                         <HudBox className={`bg-black/70 text-xs ${!isChristmas ? 'glitch' : ''}`} style={{borderColor: !isChristmas ? '#ff0000' : theme.primaryDark}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
                             {isChristmas ? (
                               <>
@@ -365,7 +365,7 @@ const App: React.FC = () => {
                     </div>
 
                      {/* LEFT: Location Data */}
-                     <div className="absolute -bottom-12 -left-20 w-56">
+                     <div className="hidden md:block absolute -bottom-12 -left-20 w-56">
                         <HudBox className={`bg-black/70 text-xs ${!isChristmas ? 'glitch' : ''}`} style={{borderColor: !isChristmas ? '#ff0000' : theme.primaryDark}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
                             {isChristmas ? (
                               <>
@@ -401,7 +401,61 @@ const App: React.FC = () => {
             </div>
 
             {/* --- RIGHT COLUMN --- */}
-            <div className="w-72 flex flex-col justify-end gap-4 pointer-events-auto h-full">
+            <div className="w-full md:w-72 flex flex-col justify-start md:justify-end gap-4 pointer-events-auto md:h-full order-3">
+                 
+                 {/* Mobile Telemetry & Location */}
+                 <div className="md:hidden grid grid-cols-2 gap-2">
+                    <HudBox className="bg-black/70 text-xs" style={{borderColor: !isChristmas ? '#ff0000' : theme.primaryDark}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
+                        {isChristmas ? (
+                          <>
+                            <div className="flex justify-between mb-1">
+                                <span style={{color: theme.primaryDark}}>ALT:</span> 
+                                <span className="font-bold" style={{color: theme.secondary}}>{Math.round(santa.altitude).toLocaleString()} FT</span>
+                            </div>
+                            <div className="flex justify-between mb-1">
+                                <span style={{color: theme.primaryDark}}>SPEED:</span> 
+                                <span className="font-bold" style={{color: theme.secondary}}>MACH {santa.speed.toFixed(2)}</span>
+                            </div>
+                             <div className="flex justify-between">
+                                <span style={{color: theme.primaryDark}}>CONF:</span> 
+                                <span className="font-bold" style={{color: theme.secondary}}>99.9%</span>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex justify-between mb-1">
+                                <span className="text-red-400">ALT:</span> 
+                                <span className="font-bold text-red-500 glitch-text">N/A</span>
+                            </div>
+                            <div className="flex justify-between mb-1">
+                                <span className="text-red-400">SPEED:</span> 
+                                <span className="font-bold text-red-500 glitch-text">N/A</span>
+                            </div>
+                             <div className="flex justify-between">
+                                <span className="text-red-400">CONF:</span> 
+                                <span className="font-bold text-red-500 glitch-text">0%</span>
+                            </div>
+                          </>
+                        )}
+                    </HudBox>
+                    <HudBox className="bg-black/70 text-xs" style={{borderColor: !isChristmas ? '#ff0000' : theme.primaryDark}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
+                        {isChristmas ? (
+                          <>
+                            <div className="text-[10px] mb-1" style={{color: theme.primaryDark}}>SECTOR:</div>
+                            <div className="font-bold text-sm text-white mb-1">{santa.currentRegion}</div>
+                            <div className="text-[10px]" style={{color: theme.primary}}>LOC:</div>
+                            <div className="font-bold text-xs text-white truncate">{santa.locationName}</div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="text-[10px] mb-1 text-red-400">SECTOR:</div>
+                            <div className="font-bold text-sm text-red-500 glitch-text mb-1">UNKNOWN</div>
+                            <div className="text-[10px] text-red-400">STATUS:</div>
+                            <div className="font-bold text-xs text-red-500 glitch-text">INACTIVE</div>
+                          </>
+                        )}
+                    </HudBox>
+                 </div>
                  
                  {/* View Mode Selectors */}
                  <div className="flex flex-col gap-2">
