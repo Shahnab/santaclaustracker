@@ -133,8 +133,8 @@ const App: React.FC = () => {
   return (
     <div className="relative w-screen h-screen bg-black text-white font-mono overflow-hidden select-none">
       
-      {/* --- 3D MAP BACKGROUND LAYER --- */}
-      <div className="absolute inset-0 z-0 bg-black">
+      {/* --- 3D MAP BACKGROUND LAYER (Desktop Only) --- */}
+      <div className="hidden md:block absolute inset-0 z-0 bg-black">
          <GlobeMap 
             santaPosition={santa.coordinates} 
             visitedLocations={santa.visitedLocations}
@@ -148,7 +148,7 @@ const App: React.FC = () => {
          
          {/* Error Overlay when not Christmas */}
          {!isChristmas && (
-           <div className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none">
+           <div className="absolute inset-0 z-20 md:z-20 flex items-center justify-center pointer-events-none">
              <div className="text-center">
                <div className="text-6xl font-bold text-red-500 glitch-text mb-4">
                  SYSTEM OFFLINE
@@ -169,10 +169,10 @@ const App: React.FC = () => {
       </div>
       
       {/* UI Overlay */}
-      <div className="absolute inset-0 flex flex-col pointer-events-none z-20">
+      <div className="absolute inset-0 flex flex-col pointer-events-none z-30 md:z-20">
         
         {/* --- TOP BAR --- */}
-        <header className="h-auto md:h-14 bg-gradient-to-r from-[#051014]/95 via-[#051014]/90 to-[#051014]/95 backdrop-blur-md border-b-2 flex flex-col md:flex-row items-center justify-between px-3 md:px-6 py-2 md:py-0 text-xs tracking-wider z-50 relative overflow-hidden" style={{borderColor: theme.primary + '30', boxShadow: `0 5px 30px ${theme.glow}`}}>
+        <header className="h-auto md:h-14 bg-gradient-to-r from-[#051014]/95 via-[#051014]/90 to-[#051014]/95 backdrop-blur-md border-b-2 flex flex-col md:flex-row items-center justify-between px-3 md:px-6 py-2 md:py-0 text-xs tracking-wider z-50 relative overflow-hidden pointer-events-auto" style={{borderColor: theme.primary + '30', boxShadow: `0 5px 30px ${theme.glow}`}}>
            {/* Animated background bar */}
            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent to-transparent shimmer opacity-50" style={{backgroundImage: `linear-gradient(to right, transparent, ${theme.primaryLight}, transparent)`}}></div>
            
@@ -212,7 +212,7 @@ const App: React.FC = () => {
         <div className="flex-1 flex flex-col md:flex-row relative p-2 md:p-6 gap-4 md:gap-0 overflow-y-auto md:overflow-visible">
             
             {/* --- LEFT COLUMN --- */}
-            <div className="w-full md:w-80 flex flex-col gap-4 pointer-events-auto md:h-full justify-start order-2 md:order-1">
+            <div className="w-full md:w-80 flex flex-col gap-4 pointer-events-auto md:h-full justify-start order-2 md:order-1 shrink-0">
                 
                 {/* 1. Log Feed */}
                 <HudBox title={isChristmas ? "DECLASSIFIED THERMAG FEED" : "DECLASSIFIED THERMAG FEED [ERROR]"} className={`h-64 md:h-96 relative overflow-hidden ${!isChristmas ? 'glitch' : ''}`} style={{borderLeft: `4px solid ${!isChristmas ? '#ff0000' : theme.primary}`}} themeColor={!isChristmas ? '#ff0000' : theme.primary} themeDark={!isChristmas ? '#cc0000' : theme.primaryDark} themeLight={!isChristmas ? '#ff4444' : theme.primaryLight}>
@@ -308,8 +308,20 @@ const App: React.FC = () => {
             </div>
 
             {/* --- CENTER AREA (RETICLE) --- */}
-            <div className="flex-1 relative mx-0 md:mx-8 order-1 md:order-2 h-64 md:h-auto">
-                {/* Center Reticle Box */}
+            <div className="flex-1 relative mx-0 md:mx-8 order-1 md:order-2 md:h-auto">
+                {/* Mobile Globe View - dedicated visible interactive area */}
+                <div className="md:hidden relative h-[350px] border-2 rounded-lg overflow-hidden pointer-events-auto" style={{borderColor: !isChristmas ? '#ff0000' : theme.primary + '50', backgroundColor: '#000'}}>
+                    <GlobeMap 
+                      santaPosition={santa.coordinates} 
+                      visitedLocations={santa.visitedLocations}
+                      plannedRoute={plannedRoute}
+                      viewMode={viewMode}
+                      isActive={isChristmas}
+                    />
+                    <div className="absolute inset-0 pointer-events-none z-10 scanlines opacity-10"></div>
+                </div>
+                
+                {/* Desktop Reticle Box */}
                 <div className={`hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[50%] border ${!isChristmas ? 'glitch' : ''}`} style={{borderColor: !isChristmas ? '#ff0000' : theme.primary + '30'}}>
                     {/* Corners */}
                     <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2" style={{borderColor: !isChristmas ? '#ff0000' : theme.secondary}}></div>
@@ -401,7 +413,7 @@ const App: React.FC = () => {
             </div>
 
             {/* --- RIGHT COLUMN --- */}
-            <div className="w-full md:w-72 flex flex-col justify-start md:justify-end gap-4 pointer-events-auto md:h-full order-3">
+            <div className="w-full md:w-72 flex flex-col justify-start md:justify-end gap-4 pointer-events-auto md:h-full order-3 shrink-0">
                  
                  {/* Mobile Telemetry & Location */}
                  <div className="md:hidden grid grid-cols-2 gap-2">

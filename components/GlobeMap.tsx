@@ -598,7 +598,7 @@ const UTCTimeDisplay = ({ viewMode }: { viewMode: ViewMode }) => {
     const declination = -23.44 * Math.cos((360/365) * (dayOfYear + 10) * (Math.PI/180));
 
     return (
-        <div className="absolute bottom-6 right-80 p-3 bg-black/60 border backdrop-blur-md font-mono text-xs z-10 pointer-events-none min-w-[200px]" style={{borderColor: themeColor + '30', color: themeLight}}>
+        <div className="hidden md:block absolute bottom-6 right-80 p-3 bg-black/60 border backdrop-blur-md font-mono text-xs z-10 pointer-events-none min-w-[200px]" style={{borderColor: themeColor + '30', color: themeLight}}>
             <div className="text-[10px] mb-1 uppercase tracking-widest border-b pb-1" style={{color: themeDark, borderColor: themeDark + '50'}}>Universal Time (Z)</div>
             <div className="text-2xl font-bold tracking-widest text-white tabular-nums">
                 {time.getUTCHours().toString().padStart(2, '0')}:
